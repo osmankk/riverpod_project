@@ -7,7 +7,6 @@ class AllProvincesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final allProvinces = ref.watch(provincesListProvider);
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
@@ -23,11 +22,14 @@ class AllProvincesList extends ConsumerWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16,
         children: [
-          Text(loc.provincesLabel, style: textTheme.headlineSmall!.copyWith(
-            fontWeight: FontWeight.bold,
-          )),
+          Text(loc.provincesLabel,
+              style: textTheme.headlineSmall!.copyWith(
+                fontWeight: FontWeight.bold,
+              )),
+          SizedBox(
+            width: 32,
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: allProvinces.length,

@@ -24,11 +24,12 @@ class MapAssetsList extends ConsumerWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16,
+       
         children: [
           Text(loc.showLabel, style: textTheme.headlineSmall!.copyWith(
             fontWeight: FontWeight.bold,
           )),
+              SizedBox(width: 32,),
           Expanded(
             child: Consumer(
               builder: (context, ref, child) {

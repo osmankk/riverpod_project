@@ -13,50 +13,42 @@ class DRMapApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colorScheme.surfaceContainer,
-      body: Center(
-        child: Consumer(
-          builder: (context, ref, child) {
-
+        backgroundColor: colorScheme.surfaceContainer,
+        body: Center(
+          child: Consumer(builder: (context, ref, child) {
             final fetchProvinces = ref.watch(fetchProvincesProvider);
 
             return fetchProvinces.when(
               data: (data) {
-
                 return Stack(
                   children: [
                     Center(
                       child: InteractiveViewer(
-                        clipBehavior: Clip.none,
-                        child: DRMap()
-                      ),
+                          clipBehavior: Clip.none, child: DRMap()),
                     ),
-                
                     Align(
                       alignment: Alignment.topLeft,
                       child: MapAssetsList(),
                     ),
-                
                     Align(
                       alignment: Alignment.topRight,
                       child: AllProvincesList(),
                     ),
-                
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: MapRegionsList(),
                     ),
-
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Row(
-                        spacing: 32,
                         children: [
                           AppThemeSwitch(),
+                          SizedBox(
+                            width: 32,
+                          ),
                           AppLangSwitch()
                         ],
                       ),
@@ -65,20 +57,20 @@ class DRMapApp extends StatelessWidget {
                 );
               },
               error: (e, s) => Column(
-                spacing: 8,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.warning),
+                  SizedBox(
+                    width: 32,
+                  ),
                   Text(e.toString()),
                 ],
               ),
               loading: () => CircularProgressIndicator(),
             );
-          }
-        ),
-      )
-    );
+          }),
+        ));
   }
 }
